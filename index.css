@@ -36,6 +36,17 @@
     
 }
 
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimmer-card {
+    background-color: grey;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+}
+
 .res-card {
     background-color: beige;
     width: 300px;
@@ -55,4 +66,11 @@
 .res-card > img {
     width: 290px;
     margin: 5px;
+    height: 220px;
+}
+
+.login {
+    width: 100px;
+    height: 50px;
+    margin: 10px;
 }

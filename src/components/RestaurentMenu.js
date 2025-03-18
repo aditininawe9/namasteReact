@@ -1,43 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
-import {MENU_URL} from "../utils/constant"
+import useRestaurant from "../utils/useRestaurant";
 
 const RestaurentMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-  const { resId } = useParams()
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_URL+resId)
-    const json = await data.json();
-    setResInfo(json);
-  };
+  const { resId } = useParams();
+  const resInfo = useRestaurant(resId);
+
   if (resInfo === null) return <Shimmer />;
 
   const { name, cloudinaryImageId, cuisines, costForTwoMessage } =
-    resInfo?.data?.cards[2]?.card?.card?.info;
+    resInfo?.cards[2]?.card?.card?.info;
 
-  const  {itemCards
-  } = resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+  // const  {itemCards
+  // } = resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
 
-  console.log("infor", itemCards);
-  console.log(
-    "resInfo",
-    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR
-  );
-  // console.log('cloudinaryImageId', resInfo.data.cards[2].card.card.info,cloudinaryImageId);
-  // console.log("resInfo", resInfo?.data?.cards[4]);
+// console.log(resInfo);
   return (
     <div>
       <h1>{name}</h1>/
       <h3>
         {cuisines.join(", ")} - {costForTwoMessage}
       </h3>
-      <ul>
+      {/* <ul>
         {itemCards.map(item => <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>)}
-      </ul>
+      </ul> */}
     </div>
   );
 };

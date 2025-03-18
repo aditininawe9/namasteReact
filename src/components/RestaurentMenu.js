@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 import useRestaurant from "../utils/useRestaurant";
+import RestaurentCategory from "./RestaurentCategory";
 
 const RestaurentMenu = () => {
   const { resId } = useParams();
@@ -12,19 +13,15 @@ const RestaurentMenu = () => {
   const { name, cloudinaryImageId, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
 
-  // const  {itemCards
-  // } = resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+const categories = resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(c => c.card.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") 
 
-// console.log(resInfo);
-  return (
+return (
     <div>
-      <h1>{name}</h1>/
-      <h3>
+      <h1><strong>{name}</strong></h1>/
+      <h4>
         {cuisines.join(", ")} - {costForTwoMessage}
-      </h3>
-      {/* <ul>
-        {itemCards.map(item => <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>)}
-      </ul> */}
+      </h4>
+      {categories.map((category) => <RestaurentCategory data = {category.card.card}/>)}
     </div>
   );
 };

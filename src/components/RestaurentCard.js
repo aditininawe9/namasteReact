@@ -10,5 +10,13 @@ const RestaurentCard = ({resData}) => {
   );
 };
 
+export const withOpenLabel = (RestaurentCard) => {
+  return(props) => {
+    return (
+      <><div>Open</div><RestaurentCard {...props}/></>
+    )
+  }
+}
+
 
 export default RestaurentCard

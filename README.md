@@ -17,3 +17,12 @@
 - Diagnostic
 - Https
 - Tree Shaking - it remove unused code
+
+
+# Redux Toolkit
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our app to store
+- Slice(cartSlice)
+- dispatch(action)
+- Selector
